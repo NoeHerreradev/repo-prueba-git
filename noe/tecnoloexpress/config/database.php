@@ -3,6 +3,15 @@
 use Illuminate\Support\Str;
 use Pdo\Mysql;
 
+// Neon (PostgreSQL serverless) usa SNI para identificar el endpoint. Algunos
+// entornos —como el PHP de Vercel— traen un libpq viejo sin soporte de SNI y
+// fallan con «Endpoint ID is not specified». La solución oficial de Neon es
+// pasar el endpoint ID (el primer segmento del host) como opción de conexión.
+$pgHost = env('DB_HOST', '127.0.0.1');
+$pgHostWithEndpoint = str_contains($pgHost, '.neon.tech')
+    ? $pgHost.';options=endpoint='.Str::before($pgHost, '.')
+    : $pgHost;
+
 return [
 
     /*
@@ -87,7 +96,7 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => $pgHostWithEndpoint,
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'laravel'),
             'username' => env('DB_USERNAME', 'root'),
