@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#e2e8f0"/>
+  <g fill="none" stroke="#94a3b8" stroke-width="14" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M250 360 L400 230 L550 360"/>
+    <path d="M290 340 V420 H510 V340"/>
+  </g>
+  <text x="400" y="480" font-family="system-ui,sans-serif" font-size="34"
+        fill="#94a3b8" text-anchor="middle">Sin foto</text>
+</svg>
