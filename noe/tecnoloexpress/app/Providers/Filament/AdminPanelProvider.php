@@ -2,6 +2,9 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\FormSettings;
+use App\Filament\Pages\Pipeline;
+use App\Filament\Pages\PortalSettings;
 use App\Filament\Widgets\CommissionsByAgentChart;
 use App\Filament\Widgets\CrmStatsOverview;
 use App\Filament\Widgets\LeadsBySourceChart;
@@ -50,6 +53,9 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
                 Dashboard::class,
+                Pipeline::class,
+                FormSettings::class,
+                PortalSettings::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
