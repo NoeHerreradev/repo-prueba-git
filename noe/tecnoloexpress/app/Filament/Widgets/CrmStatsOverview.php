@@ -40,9 +40,9 @@ class CrmStatsOverview extends StatsOverviewWidget
         $available = (clone $query)->where('status', PropertyStatus::Disponible)->count();
         $portfolio = (clone $query)->where('status', PropertyStatus::Disponible)->sum('price');
 
-        return Stat::make('Inmuebles disponibles', $available)
-            ->description('Cartera: $'.number_format((float) $portfolio, 0, ',', '.'))
-            ->descriptionIcon('heroicon-m-building-office-2')
+        return Stat::make('Servicios disponibles', $available)
+            ->description('Catálogo: $'.number_format((float) $portfolio, 0, ',', '.'))
+            ->descriptionIcon('heroicon-m-briefcase')
             ->color('warning');
     }
 

@@ -26,15 +26,15 @@ class PropertyResource extends Resource
 {
     protected static ?string $model = Property::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Inventario';
+    protected static string|UnitEnum|null $navigationGroup = 'Servicios';
 
-    protected static ?string $navigationLabel = 'Propiedades';
+    protected static ?string $navigationLabel = 'Servicios';
 
-    protected static ?string $modelLabel = 'propiedad';
+    protected static ?string $modelLabel = 'servicio';
 
-    protected static ?string $pluralModelLabel = 'propiedades';
+    protected static ?string $pluralModelLabel = 'servicios';
 
     protected static ?int $navigationSort = 1;
 
@@ -102,7 +102,7 @@ class PropertyResource extends Resource
 
     public static function getNavigationBadgeTooltip(): ?string
     {
-        return 'Propiedades disponibles';
+        return 'Servicios disponibles';
     }
 
     public static function getGlobalSearchResultDetails($record): array

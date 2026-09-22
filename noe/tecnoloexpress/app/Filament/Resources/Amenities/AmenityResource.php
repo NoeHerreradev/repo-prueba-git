@@ -23,13 +23,13 @@ class AmenityResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSparkles;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Inventario';
+    protected static string|UnitEnum|null $navigationGroup = 'Servicios';
 
-    protected static ?string $navigationLabel = 'Amenidades';
+    protected static ?string $navigationLabel = 'Características';
 
-    protected static ?string $modelLabel = 'amenidad';
+    protected static ?string $modelLabel = 'característica';
 
-    protected static ?string $pluralModelLabel = 'amenidades';
+    protected static ?string $pluralModelLabel = 'características';
 
     protected static ?int $navigationSort = 2;
 

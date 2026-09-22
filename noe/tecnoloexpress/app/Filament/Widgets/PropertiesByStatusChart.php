@@ -8,7 +8,7 @@ use Filament\Widgets\ChartWidget;
 
 class PropertiesByStatusChart extends ChartWidget
 {
-    protected ?string $heading = 'Inventario por estado';
+    protected ?string $heading = 'Servicios por estado';
 
     protected static ?int $sort = 3;
 
@@ -37,7 +37,7 @@ class PropertiesByStatusChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Inmuebles',
+                    'label' => 'Servicios',
                     'data' => $statuses->map(fn (PropertyStatus $s) => (int) $counts[$s->value])->all(),
                     'backgroundColor' => $statuses->map(fn (PropertyStatus $s) => match ($s) {
                         PropertyStatus::Borrador => '#94a3b8',

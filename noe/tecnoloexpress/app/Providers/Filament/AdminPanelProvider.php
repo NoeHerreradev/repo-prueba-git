@@ -45,7 +45,7 @@ class AdminPanelProvider extends PanelProvider
             // o en sus ítems, y los iconos por recurso son más informativos.
             ->navigationGroups([
                 NavigationGroup::make('Comercial'),
-                NavigationGroup::make('Inventario'),
+                NavigationGroup::make('Servicios'),
                 NavigationGroup::make('Administración'),
                 NavigationGroup::make('Ajustes'),
             ])
