@@ -8,7 +8,7 @@
         </div>
     @else
         <h3 class="text-lg font-semibold">
-            {{ $property ? 'Solicita información de este inmueble' : 'Cuéntanos qué estás buscando' }}
+            {{ $property ? 'Solicita información de este servicio' : 'Cuéntanos qué servicio estás buscando' }}
         </h3>
         <p class="mt-1 text-sm text-slate-500">
             Responde un asesor especializado, sin compromiso.

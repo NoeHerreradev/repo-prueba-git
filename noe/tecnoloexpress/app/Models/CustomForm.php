@@ -23,15 +23,15 @@ class CustomForm extends Model
     public const FORMS = [
         'portal_contact' => [
             'name' => 'Formulario de Contacto General (Portada)',
-            'description' => 'Formulario de captación que se muestra en la portada del portal público.',
+            'description' => 'Formulario de captación de clientes y solicitudes de servicio en la portada pública.',
         ],
         'property_inquiry' => [
-            'name' => 'Formulario de Consulta de Inmueble',
-            'description' => 'Formulario para solicitar información o agendar visita desde la ficha de una propiedad.',
+            'name' => 'Formulario de Consulta de Servicio',
+            'description' => 'Formulario para solicitar información o cotización de un servicio específico.',
         ],
         'owner_listing' => [
-            'name' => 'Formulario de Captación de Propietarios',
-            'description' => 'Formulario para propietarios interesados en vender o alquilar sus propiedades.',
+            'name' => 'Formulario de Registro / Solicitud de Servicios',
+            'description' => 'Formulario para proveedores o clientes interesados en publicar o requerir servicios.',
         ],
     ];
 
@@ -42,8 +42,8 @@ class CustomForm extends Model
                 [
                     'type' => 'header',
                     'data' => [
-                        'title' => '¿Buscas algo específico?',
-                        'subtitle' => 'Déjanos tus datos y un asesor te contactará con opciones a tu medida.',
+                        'title' => '¿Buscas un servicio específico?',
+                        'subtitle' => 'Déjanos tus datos y un asesor se comunicará contigo con una propuesta a tu medida.',
                     ],
                 ],
                 [
@@ -82,31 +82,31 @@ class CustomForm extends Model
                 [
                     'type' => 'select',
                     'data' => [
-                        'name' => 'operation_type',
-                        'label' => '¿Qué buscas?',
-                        'placeholder' => 'Selecciona una opción',
+                        'name' => 'service_type',
+                        'label' => 'Tipo de servicio requerido',
+                        'placeholder' => 'Selecciona una categoría',
                         'required' => false,
                         'width' => 'half',
                         'options' => [
-                            ['label' => 'Comprar un inmueble', 'value' => 'comprar'],
-                            ['label' => 'Alquilar un inmueble', 'value' => 'alquilar'],
-                            ['label' => 'Invertir en proyectos', 'value' => 'invertir'],
+                            ['label' => 'Consultoría y Asesoría', 'value' => 'consultoria'],
+                            ['label' => 'Servicios Profesionales', 'value' => 'profesional'],
+                            ['label' => 'Desarrollo e Implementación', 'value' => 'desarrollo'],
+                            ['label' => 'Mantenimiento y Soporte', 'value' => 'soporte'],
                         ],
                     ],
                 ],
                 [
                     'type' => 'select',
                     'data' => [
-                        'name' => 'property_type',
-                        'label' => 'Tipo de propiedad',
-                        'placeholder' => 'Selecciona el tipo',
+                        'name' => 'service_urgency',
+                        'label' => 'Urgencia / Modalidad',
+                        'placeholder' => 'Selecciona modalidad',
                         'required' => false,
                         'width' => 'half',
                         'options' => [
-                            ['label' => 'Casa', 'value' => 'casa'],
-                            ['label' => 'Departamento / Piso', 'value' => 'departamento'],
-                            ['label' => 'Terreno / Lote', 'value' => 'terreno'],
-                            ['label' => 'Oficina / Local comercial', 'value' => 'comercial'],
+                            ['label' => 'Inmediato / Urgente', 'value' => 'urgente'],
+                            ['label' => 'Por proyecto específico', 'value' => 'proyecto'],
+                            ['label' => 'Contratación mensual / Recurrente', 'value' => 'recurrente'],
                         ],
                     ],
                 ],
@@ -115,7 +115,7 @@ class CustomForm extends Model
                     'data' => [
                         'name' => 'message',
                         'label' => 'Detalles o requerimientos específicos',
-                        'placeholder' => 'Presupuesto aproximado, zonas de preferencia, número de habitaciones...',
+                        'placeholder' => 'Describe los requerimientos del servicio que necesitas...',
                         'rows' => 3,
                         'required' => false,
                         'width' => 'full',
@@ -160,7 +160,7 @@ class CustomForm extends Model
                     'type' => 'date',
                     'data' => [
                         'name' => 'preferred_date',
-                        'label' => 'Fecha sugerida para visita',
+                        'label' => 'Fecha preferida para atención / inicio',
                         'required' => false,
                         'width' => 'full',
                     ],
@@ -170,7 +170,7 @@ class CustomForm extends Model
                     'data' => [
                         'name' => 'message',
                         'label' => 'Mensaje adicional',
-                        'placeholder' => 'Hola, me interesa este inmueble y quisiera agendar una visita...',
+                        'placeholder' => 'Hola, me interesa este servicio y quisiera cotizar / agendar atención...',
                         'rows' => 2,
                         'required' => false,
                         'width' => 'full',
