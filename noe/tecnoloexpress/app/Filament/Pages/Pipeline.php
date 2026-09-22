@@ -45,7 +45,7 @@ class Pipeline extends Page
             ->with(['contact', 'property', 'agent'])
             ->orderByDesc('expected_value')
             ->get()
-            ->groupBy(fn (Lead $lead) => $lead->stage->value);
+            ->groupBy(fn (Lead $lead) => $lead->stage?->value ?? 'nuevo');
     }
 
     #[Computed]
@@ -55,7 +55,7 @@ class Pipeline extends Page
     }
 
     /** Mueve un lead a otra etapa desde el tablero. */
-    public function moveLead(int $leadId, string $stage): void
+    public function moveLead(int|string $leadId, string $stage): void
     {
         $newStage = LeadStage::tryFrom($stage);
         $lead = $this->baseQuery()->find($leadId);
@@ -93,13 +93,13 @@ class Pipeline extends Page
     /** Total del valor esperado de una columna. */
     public function stageTotal(LeadStage $stage): float
     {
-        return (float) ($this->leadsByStage[$stage->value]?->sum('expected_value') ?? 0);
+        return (float) ($this->leadsByStage->get($stage->value)?->sum('expected_value') ?? 0);
     }
 
     public function getSubheading(): ?string
     {
         $open = $this->leadsByStage
-            ->reject(fn (Collection $leads, string $stage) => ! LeadStage::from($stage)->isOpen())
+            ->reject(fn (Collection $leads, $stage) => ! (LeadStage::tryFrom((string) $stage)?->isOpen() ?? false))
             ->flatten();
 
         return sprintf(

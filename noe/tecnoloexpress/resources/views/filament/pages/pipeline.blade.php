@@ -25,7 +25,7 @@
         <div class="flex min-w-max gap-4">
             @foreach ($this->stages() as $stage)
                 @php
-                    $leads = $this->leadsByStage[$stage->value] ?? collect();
+                    $leads = $this->leadsByStage->get($stage->value, collect());
                     $total = $this->stageTotal($stage);
                 @endphp
 
