@@ -42,6 +42,7 @@ class SmokeTest extends TestCase
             'escritorio' => ['/admin'],
             'embudo' => ['/admin/pipeline'],
             'ajustes del portal' => ['/admin/portal-settings'],
+            'constructor de formularios' => ['/admin/form-settings'],
             'leads' => ['/admin/leads'],
             'nuevo lead' => ['/admin/leads/create'],
             'contactos' => ['/admin/contacts'],

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             LeadSeeder::class,
             VisitSeeder::class,
             ContractSeeder::class,
+            CustomFormSeeder::class,
         ]);
     }
 }

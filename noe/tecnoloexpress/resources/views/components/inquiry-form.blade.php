@@ -14,6 +14,12 @@
             Responde un asesor especializado, sin compromiso.
         </p>
 
+        @php
+            $formKey = $property ? 'property_inquiry' : 'portal_contact';
+            $customForm = \App\Models\CustomForm::getByKey($formKey);
+            $hasBlocks = $customForm && $customForm->is_active && !empty($customForm->blocks);
+        @endphp
+
         <form method="POST" action="{{ route('portal.inquire') }}" class="mt-5 space-y-4">
             @csrf
 
@@ -27,36 +33,40 @@
                 <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
             </div>
 
-            <div>
-                <label for="name" class="block text-sm font-medium text-slate-700">Nombre *</label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}" required
-                       class="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]">
-                @error('name') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
-            </div>
-
-            <div class="{{ $compact ? 'space-y-4' : 'grid gap-4 sm:grid-cols-2' }}">
+            @if ($hasBlocks)
+                <x-dynamic-form-blocks :blocks="$customForm->blocks" :compact="$compact" />
+            @else
                 <div>
-                    <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
-                    <input type="email" id="email" name="email" value="{{ old('email') }}"
+                    <label for="name" class="block text-sm font-medium text-slate-700">Nombre *</label>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" required
                            class="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]">
-                    @error('email') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    @error('name') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="{{ $compact ? 'space-y-4' : 'grid gap-4 sm:grid-cols-2' }}">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}"
+                               class="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]">
+                        @error('email') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-slate-700">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
+                               class="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]">
+                        @error('phone') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    </div>
                 </div>
 
                 <div>
-                    <label for="phone" class="block text-sm font-medium text-slate-700">Teléfono</label>
-                    <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
-                           class="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]">
-                    @error('phone') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    <label for="message" class="block text-sm font-medium text-slate-700">Mensaje</label>
+                    <textarea id="message" name="message" rows="4"
+                              placeholder="{{ $property ? 'Me interesa agendar una visita…' : 'Busco un departamento de 2 dormitorios en…' }}"
+                              class="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]">{{ old('message') }}</textarea>
+                    @error('message') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                 </div>
-            </div>
-
-            <div>
-                <label for="message" class="block text-sm font-medium text-slate-700">Mensaje</label>
-                <textarea id="message" name="message" rows="4"
-                          placeholder="{{ $property ? 'Me interesa agendar una visita…' : 'Busco un departamento de 2 dormitorios en…' }}"
-                          class="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[var(--brand)] focus:ring-1 focus:ring-[var(--brand)]">{{ old('message') }}</textarea>
-                @error('message') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
-            </div>
+            @endif
 
             <button type="submit"
                     class="w-full rounded-lg bg-[var(--brand)] px-4 py-2.5 text-sm font-semibold text-[var(--brand-contrast)] shadow-sm transition hover:bg-[var(--brand-dark)] focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-2">
