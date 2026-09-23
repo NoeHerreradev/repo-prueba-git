@@ -110,4 +110,9 @@ class ContactResource extends Resource
             'Email' => $record->email,
         ];
     }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->hasModuleAccess('contacts') ?? false;
+    }
 }

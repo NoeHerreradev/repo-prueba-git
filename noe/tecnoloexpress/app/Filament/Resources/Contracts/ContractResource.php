@@ -86,4 +86,9 @@ class ContractResource extends Resource
     {
         return ['number'];
     }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->hasModuleAccess('contracts') ?? false;
+    }
 }

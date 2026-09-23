@@ -78,4 +78,9 @@ class VisitResource extends Resource
     {
         return 'Visitas pendientes esta semana';
     }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->hasModuleAccess('visits') ?? false;
+    }
 }

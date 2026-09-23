@@ -75,6 +75,11 @@ class CommissionResource extends Resource
 
     public static function getNavigationBadgeTooltip(): ?string
     {
-        return 'Comisiones pendientes de pago';
+        return 'Comisiones pendientes de cobro';
+    }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->hasModuleAccess('commissions') ?? false;
     }
 }

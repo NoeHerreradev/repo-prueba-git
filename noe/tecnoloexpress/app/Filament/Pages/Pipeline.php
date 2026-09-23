@@ -28,6 +28,11 @@ class Pipeline extends Page
 
     protected static ?int $navigationSort = 0;
 
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->hasModuleAccess('pipeline') ?? false;
+    }
+
     /** Filtro de agente: vacío = todos los que el usuario puede ver. */
     public ?string $agentFilter = null;
 

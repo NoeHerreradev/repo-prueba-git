@@ -87,4 +87,9 @@ class AmenityResource extends Resource
             'index' => ManageAmenities::route('/'),
         ];
     }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->hasModuleAccess('amenities') ?? false;
+    }
 }

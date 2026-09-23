@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\Users\Schemas;
 
 use App\Enums\UserRole;
+use App\Models\User;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -65,7 +67,7 @@ class UserForm
                             ->options(UserRole::class)
                             ->default(UserRole::Agente)
                             ->required()
-                            ->helperText('Los agentes solo ven sus propios registros.'),
+                            ->helperText('Los administradores tienen acceso total a todos los módulos.'),
 
                         TextInput::make('commission_percent')
                             ->label('Comisión por defecto')
@@ -79,6 +81,18 @@ class UserForm
                             ->label('Activo')
                             ->default(true)
                             ->helperText('Si se desactiva no podrá entrar al CRM.'),
+                    ]),
+
+                Section::make('Módulos asignados del CRM')
+                    ->description('Selecciona a qué módulos del sistema tendrá acceso este usuario. Si el rol es Administrador, tiene acceso total a todos.')
+                    ->schema([
+                        CheckboxList::make('allowed_modules')
+                            ->label('Módulos permitidos')
+                            ->options(User::MODULES)
+                            ->columns(2)
+                            ->gridDirection('row')
+                            ->bulkToggleable()
+                            ->helperText('Marca los módulos que podrá ver y gestionar este usuario en el panel.'),
                     ]),
             ]);
     }

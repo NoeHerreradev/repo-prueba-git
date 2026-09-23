@@ -108,4 +108,9 @@ class LeadResource extends Resource
     {
         return 'Oportunidades abiertas';
     }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->hasModuleAccess('leads') ?? false;
+    }
 }

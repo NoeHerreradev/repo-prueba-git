@@ -118,4 +118,9 @@ class PropertyResource extends Resource
     {
         return ['title', 'code', 'city', 'neighborhood', 'address'];
     }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->hasModuleAccess('properties') ?? false;
+    }
 }

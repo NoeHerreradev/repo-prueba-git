@@ -48,7 +48,7 @@ class FormSettings extends Page implements HasSchemas
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->isAdmin() ?? false;
+        return auth()->user()?->hasModuleAccess('form_settings') ?? false;
     }
 
     public function getSubheading(): ?string

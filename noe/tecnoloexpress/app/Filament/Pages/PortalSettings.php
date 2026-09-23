@@ -47,7 +47,7 @@ class PortalSettings extends Page implements HasSchemas
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->isAdmin() ?? false;
+        return auth()->user()?->hasModuleAccess('portal_settings') ?? false;
     }
 
     public function getSubheading(): ?string

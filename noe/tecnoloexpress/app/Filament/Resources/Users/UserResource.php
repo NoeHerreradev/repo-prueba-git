@@ -60,9 +60,8 @@ class UserResource extends Resource
         ];
     }
 
-    /** La gestión de usuarios es exclusiva del administrador. */
     public static function canAccess(): bool
     {
-        return auth()->user()?->isAdmin() ?? false;
+        return auth()->user()?->hasModuleAccess('users') ?? false;
     }
 }
