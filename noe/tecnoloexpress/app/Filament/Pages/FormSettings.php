@@ -48,7 +48,7 @@ class FormSettings extends Page implements HasSchemas
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->seesAllRecords() ?? false;
+        return auth()->user()?->isAdmin() ?? false;
     }
 
     public function getSubheading(): ?string

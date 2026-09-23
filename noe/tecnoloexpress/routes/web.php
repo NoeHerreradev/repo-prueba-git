@@ -11,3 +11,8 @@ Route::middleware('portal.enabled')->group(function () {
         ->name('portal.inquire');
     Route::get('/propiedades/{property}', [PortalController::class, 'show'])->name('portal.show');
 });
+
+Route::middleware([\Filament\Http\Middleware\Authenticate::class])->prefix('admin/reports')->name('admin.reports.')->group(function () {
+    Route::get('/monthly-metrics', [\App\Http\Controllers\Admin\MetricsReportController::class, 'download'])
+        ->name('monthly-metrics');
+});
