@@ -5,6 +5,8 @@ namespace App\Filament\Resources\Properties\Tables;
 use App\Enums\PropertyOperation;
 use App\Enums\PropertyStatus;
 use App\Enums\PropertyType;
+use Filament\Actions\Action;
+use Filament\Actions\BulkAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -13,6 +15,7 @@ use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -22,6 +25,7 @@ use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 class PropertiesTable
 {
@@ -172,11 +176,49 @@ class PropertiesTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                Action::make('assignAgent')
+                    ->label('Asignar agente')
+                    ->icon('heroicon-m-user-plus')
+                    ->schema([
+                        Select::make('agent_id')
+                            ->label('Agente asignado')
+                            ->options(fn () => \App\Models\User::where('active', true)->pluck('name', 'id'))
+                            ->default(fn ($record) => $record->agent_id)
+                            ->required(),
+                    ])
+                    ->action(function ($record, array $data) {
+                        $record->update(['agent_id' => $data['agent_id']]);
+
+                        Notification::make()
+                            ->title('Agente asignado correctamente')
+                            ->success()
+                            ->send();
+                    }),
+
                 ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
+                    BulkAction::make('reassign')
+                        ->label('Asignar / Reasignar agente')
+                        ->icon('heroicon-m-user-plus')
+                        ->schema([
+                            Select::make('agent_id')
+                                ->label('Agente')
+                                ->options(fn () => \App\Models\User::where('active', true)->pluck('name', 'id'))
+                                ->required(),
+                        ])
+                        ->action(function (Collection $records, array $data) {
+                            $records->each->update(['agent_id' => $data['agent_id']]);
+
+                            Notification::make()
+                                ->title($records->count().' servicios asignados')
+                                ->success()
+                                ->send();
+                        })
+                        ->deselectRecordsAfterCompletion(),
+
                     DeleteBulkAction::make(),
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),

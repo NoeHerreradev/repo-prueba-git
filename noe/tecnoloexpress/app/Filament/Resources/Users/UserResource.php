@@ -43,6 +43,14 @@ class UserResource extends Resource
         return UsersTable::configure($table);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            \App\Filament\Resources\Users\RelationManagers\PropertiesRelationManager::class,
+            \App\Filament\Resources\Users\RelationManagers\LeadsRelationManager::class,
+        ];
+    }
+
     public static function getPages(): array
     {
         return [

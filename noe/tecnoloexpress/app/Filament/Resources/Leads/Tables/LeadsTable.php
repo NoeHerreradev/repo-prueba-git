@@ -178,6 +178,25 @@ class LeadsTable
                             ->send();
                     }),
 
+                Action::make('assignAgent')
+                    ->label('Asignar agente')
+                    ->icon('heroicon-m-user-plus')
+                    ->schema([
+                        Select::make('assigned_agent_id')
+                            ->label('Agente asignado')
+                            ->options(fn () => \App\Models\User::where('active', true)->pluck('name', 'id'))
+                            ->default(fn ($record) => $record->assigned_agent_id)
+                            ->required(),
+                    ])
+                    ->action(function ($record, array $data) {
+                        $record->update(['assigned_agent_id' => $data['assigned_agent_id']]);
+
+                        Notification::make()
+                            ->title('Agente asignado al lead')
+                            ->success()
+                            ->send();
+                    }),
+
                 ViewAction::make(),
                 EditAction::make(),
             ])
