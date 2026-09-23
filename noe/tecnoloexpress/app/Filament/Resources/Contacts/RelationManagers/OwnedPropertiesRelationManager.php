@@ -13,7 +13,7 @@ class OwnedPropertiesRelationManager extends RelationManager
 {
     protected static string $relationship = 'ownedProperties';
 
-    protected static ?string $title = 'Inmuebles en propiedad';
+    protected static ?string $title = 'Servicios en propiedad';
 
     public function table(Table $table): Table
     {
@@ -25,7 +25,7 @@ class OwnedPropertiesRelationManager extends RelationManager
                     ->searchable(),
 
                 TextColumn::make('title')
-                    ->label('Inmueble')
+                    ->label('Servicio')
                     ->searchable()
                     ->wrap()
                     ->description(fn ($record) => collect([$record->neighborhood, $record->city])->filter()->join(', ')),

@@ -29,7 +29,7 @@ class LeadsRelationManager extends RelationManager
             ->recordTitleAttribute('title')
             ->columns([
                 TextColumn::make('property.title')
-                    ->label('Inmueble')
+                    ->label('Servicio')
                     ->placeholder('Consulta general')
                     ->searchable()
                     ->wrap(),

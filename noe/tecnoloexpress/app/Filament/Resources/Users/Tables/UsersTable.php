@@ -44,7 +44,7 @@ class UsersTable
                     ->toggleable(),
 
                 TextColumn::make('properties_count')
-                    ->label('Inmuebles')
+                    ->label('Servicios')
                     ->counts('properties')
                     ->alignCenter()
                     ->badge()

@@ -32,7 +32,7 @@ class VisitsRelationManager extends RelationManager
                     ->sortable(),
 
                 TextColumn::make('property.title')
-                    ->label('Inmueble')
+                    ->label('Servicio')
                     ->searchable()
                     ->wrap()
                     ->description(fn ($record) => $record->property?->code),

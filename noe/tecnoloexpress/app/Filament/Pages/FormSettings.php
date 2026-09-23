@@ -233,7 +233,7 @@ class FormSettings extends Page implements HasSchemas
 
                         TextInput::make('label')
                             ->label('Etiqueta')
-                            ->placeholder('ej: ¿Qué tipo de inmueble buscas?')
+                            ->placeholder('ej: ¿Qué tipo de servicio buscas?')
                             ->required(),
 
                         TextInput::make('placeholder')

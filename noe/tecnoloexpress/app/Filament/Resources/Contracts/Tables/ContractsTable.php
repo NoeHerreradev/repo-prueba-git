@@ -39,7 +39,7 @@ class ContractsTable
                     ->sortable(),
 
                 TextColumn::make('property.title')
-                    ->label('Inmueble')
+                    ->label('Servicio')
                     ->searchable()
                     ->limit(35)
                     ->wrap()
@@ -128,7 +128,7 @@ class ContractsTable
                     ->color('success')
                     ->requiresConfirmation()
                     ->modalHeading('Activar contrato')
-                    ->modalDescription('El inmueble cambiará de estado, el lead se marcará como ganado y se generarán las comisiones.')
+                    ->modalDescription('El servicio cambiará de estado, el lead se marcará como ganado y se generarán las comisiones.')
                     ->visible(fn (Contract $record) => in_array($record->status, [
                         ContractStatus::Borrador,
                         ContractStatus::PendienteFirma,
@@ -138,7 +138,7 @@ class ContractsTable
 
                         Notification::make()
                             ->title('Contrato activado')
-                            ->body('Inmueble marcado como '.$record->type->resultingPropertyStatus()->getLabel().'.')
+                            ->body('Servicio marcado como '.$record->type->resultingPropertyStatus()->getLabel().'.')
                             ->success()
                             ->send();
                     }),

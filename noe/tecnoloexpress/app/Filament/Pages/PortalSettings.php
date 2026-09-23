@@ -246,7 +246,7 @@ class PortalSettings extends Page implements HasSchemas
                 ->schema([
                     Toggle::make('show_cities')
                         ->label('Mostrar la sección')
-                        ->helperText('Botones con las ciudades que tienen inmuebles publicados.')
+                        ->helperText('Botones con las ciudades que tienen servicios publicados.')
                         ->live()
                         ->columnSpanFull(),
 
@@ -260,7 +260,7 @@ class PortalSettings extends Page implements HasSchemas
                 ->schema([
                     Toggle::make('show_contact')
                         ->label('Mostrar la sección')
-                        ->helperText('Si lo apagas, el portal deja de captar leads desde la portada. El formulario de cada inmueble sigue activo.')
+                        ->helperText('Si lo apagas, el portal deja de captar leads desde la portada. El formulario de cada servicio sigue activo.')
                         ->live(),
 
                     TextInput::make('contact_heading')
@@ -452,7 +452,7 @@ class PortalSettings extends Page implements HasSchemas
                 ->color('danger')
                 ->requiresConfirmation()
                 ->modalHeading('Restaurar todos los ajustes')
-                ->modalDescription('Se perderán los textos, colores e imágenes que hayas configurado. Los inmuebles y los leads no se tocan.')
+                ->modalDescription('Se perderán los textos, colores e imágenes que hayas configurado. Los servicios y los leads no se tocan.')
                 ->action(function () {
                     foreach (Setting::DEFAULTS as $key => $value) {
                         Setting::set($key, $value);

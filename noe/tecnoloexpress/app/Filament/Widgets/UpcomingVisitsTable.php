@@ -33,7 +33,7 @@ class UpcomingVisitsTable extends TableWidget
             ->defaultSort('scheduled_at')
             ->defaultPaginationPageOption(5)
             ->emptyStateHeading('No hay visitas programadas')
-            ->emptyStateDescription('Agenda una visita desde la ficha de un lead o de un inmueble.')
+            ->emptyStateDescription('Agenda una visita desde la ficha de un lead o de un servicio.')
             ->emptyStateIcon('heroicon-o-calendar-days')
             ->columns([
                 TextColumn::make('scheduled_at')
@@ -43,7 +43,7 @@ class UpcomingVisitsTable extends TableWidget
                     ->sortable(),
 
                 TextColumn::make('property.title')
-                    ->label('Inmueble')
+                    ->label('Servicio')
                     ->limit(40)
                     ->description(fn (Visit $record) => $record->property?->code),
 

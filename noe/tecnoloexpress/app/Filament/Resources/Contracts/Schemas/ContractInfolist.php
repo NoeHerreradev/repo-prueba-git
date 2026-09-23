@@ -31,7 +31,7 @@ class ContractInfolist
                         TextEntry::make('status')->label('Estado')->badge(),
 
                         TextEntry::make('property.title')
-                            ->label('Inmueble')
+                            ->label('Servicio')
                             ->url(fn ($record) => $record->property
                                 ? \App\Filament\Resources\Properties\PropertyResource::getUrl('view', ['record' => $record->property])
                                 : null)

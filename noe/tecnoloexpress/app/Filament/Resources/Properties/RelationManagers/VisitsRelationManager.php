@@ -26,7 +26,7 @@ class VisitsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->heading('Visitas al inmueble')
+            ->heading('Visitas al servicio')
             ->columns([
                 TextColumn::make('scheduled_at')
                     ->label('Fecha')

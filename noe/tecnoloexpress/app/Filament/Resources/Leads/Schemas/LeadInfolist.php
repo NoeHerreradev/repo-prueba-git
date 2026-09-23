@@ -33,7 +33,7 @@ class LeadInfolist
                         TextEntry::make('source')->label('Origen')->badge()->color('gray'),
 
                         TextEntry::make('property.title')
-                            ->label('Inmueble de interés')
+                            ->label('Servicio de interés')
                             ->placeholder('Consulta general')
                             ->url(fn ($record) => $record->property
                                 ? \App\Filament\Resources\Properties\PropertyResource::getUrl('view', ['record' => $record->property])

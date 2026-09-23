@@ -37,7 +37,7 @@ class LeadsTable
                     ->description(fn ($record) => $record->contact?->phone),
 
                 TextColumn::make('property.title')
-                    ->label('Inmueble')
+                    ->label('Servicio')
                     ->placeholder('Consulta general')
                     ->searchable()
                     ->limit(35)

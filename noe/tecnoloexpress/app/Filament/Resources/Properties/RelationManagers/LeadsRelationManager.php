@@ -27,7 +27,7 @@ class LeadsRelationManager extends RelationManager
     {
         return $table
             ->recordTitleAttribute('title')
-            ->heading('Interesados en este inmueble')
+            ->heading('Interesados en este servicio')
             ->columns([
                 TextColumn::make('contact.first_name')
                     ->label('Contacto')

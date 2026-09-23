@@ -52,7 +52,7 @@ class ContactInfolist
                             TextEntry::make('budget_min')->label('Presupuesto mín.')->money('USD')->placeholder('—'),
                             TextEntry::make('budget_max')->label('Presupuesto máx.')->money('USD')->placeholder('—'),
                             TextEntry::make('matches')
-                                ->label('Inmuebles que encajan')
+                                ->label('Servicios que encajan')
                                 ->state(fn ($record) => $record->matchingProperties()->count().' disponibles')
                                 ->badge()
                                 ->color('success')

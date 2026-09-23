@@ -35,7 +35,7 @@ class CommissionsTable
                         : null),
 
                 TextColumn::make('contract.property.title')
-                    ->label('Inmueble')
+                    ->label('Servicio')
                     ->limit(35)
                     ->wrap()
                     ->toggleable(),

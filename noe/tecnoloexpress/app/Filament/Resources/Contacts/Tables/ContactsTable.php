@@ -63,7 +63,7 @@ class ContactsTable
                     ->color('info'),
 
                 TextColumn::make('owned_properties_count')
-                    ->label('Inmuebles')
+                    ->label('Servicios')
                     ->counts('ownedProperties')
                     ->alignCenter()
                     ->badge()

@@ -24,7 +24,7 @@ class VisitForm
                     ->columns(2)
                     ->schema([
                         Select::make('property_id')
-                            ->label('Inmueble')
+                            ->label('Servicio')
                             ->relationship('property', 'title', fn ($query) => $query
                                 ->whereIn('status', [PropertyStatus::Disponible, PropertyStatus::Reservado]))
                             ->getOptionLabelFromRecordUsing(fn ($record) => "{$record->code} — {$record->title}")

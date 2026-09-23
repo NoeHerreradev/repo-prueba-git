@@ -46,7 +46,7 @@ class PropertiesTable
                     ->toggleable(),
 
                 TextColumn::make('title')
-                    ->label('Inmueble')
+                    ->label('Servicio')
                     ->searchable()
                     ->sortable()
                     ->wrap()

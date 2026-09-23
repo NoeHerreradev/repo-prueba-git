@@ -31,7 +31,7 @@ class PropertyForm
     {
         return $schema
             ->components([
-                Tabs::make('Inmueble')
+                Tabs::make('Servicio')
                     ->columnSpanFull()
                     ->tabs([
                         Tabs\Tab::make('General')
@@ -87,12 +87,12 @@ class PropertyForm
 
                     TextInput::make('slug')
                         ->label('URL amigable')
-                        ->helperText('Se usa en la dirección pública del inmueble.')
+                        ->helperText('Se usa en la dirección pública del servicio.')
                         ->unique(ignoreRecord: true)
                         ->maxLength(255),
 
                     Select::make('type')
-                        ->label('Tipo de inmueble')
+                        ->label('Tipo de servicio')
                         ->options(PropertyType::class)
                         ->default(PropertyType::Apartamento)
                         ->required()

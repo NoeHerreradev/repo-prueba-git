@@ -42,10 +42,10 @@ class ContractForm
                             ->options(ContractStatus::class)
                             ->default(ContractStatus::Borrador)
                             ->required()
-                            ->helperText('Al pasar a «Activo» se actualiza el inmueble y se generan las comisiones.'),
+                            ->helperText('Al pasar a «Activo» se actualiza el servicio y se generan las comisiones.'),
 
                         Select::make('property_id')
-                            ->label('Inmueble')
+                            ->label('Servicio')
                             ->relationship('property', 'title')
                             ->getOptionLabelFromRecordUsing(fn ($record) => "{$record->code} — {$record->title}")
                             ->searchable(['title', 'code', 'city'])

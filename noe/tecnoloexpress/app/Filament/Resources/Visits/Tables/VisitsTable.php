@@ -31,7 +31,7 @@ class VisitsTable
                     ->description(fn (Visit $record) => $record->scheduled_at?->diffForHumans()),
 
                 TextColumn::make('property.title')
-                    ->label('Inmueble')
+                    ->label('Servicio')
                     ->searchable()
                     ->wrap()
                     ->limit(40)

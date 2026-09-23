@@ -87,7 +87,7 @@ class ContactForm
                     ]),
 
                 Section::make('Preferencias de búsqueda')
-                    ->description('Se usan para cruzar el contacto con los inmuebles disponibles.')
+                    ->description('Se usan para cruzar el contacto con los servicios disponibles.')
                     ->columns(3)
                     ->collapsible()
                     // Un propietario no busca inmueble, así que no tiene preferencias.
@@ -98,7 +98,7 @@ class ContactForm
                             ->options(PropertyOperation::class),
 
                         Select::make('pref_property_type')
-                            ->label('Tipo de inmueble')
+                            ->label('Tipo de servicio')
                             ->options(PropertyType::class),
 
                         TextInput::make('pref_city')

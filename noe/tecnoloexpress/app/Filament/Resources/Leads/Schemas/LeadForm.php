@@ -51,12 +51,12 @@ class LeadForm
                             ]),
 
                         Select::make('property_id')
-                            ->label('Inmueble de interés')
+                            ->label('Servicio de interés')
                             ->relationship('property', 'title')
                             ->getOptionLabelFromRecordUsing(fn ($record) => "{$record->code} — {$record->title}")
                             ->searchable(['title', 'code', 'city'])
                             ->preload()
-                            ->placeholder('Consulta general (sin inmueble)')
+                            ->placeholder('Consulta general (sin servicio)')
                             // Al elegir inmueble se propone su precio como valor esperado.
                             ->live()
                             ->afterStateUpdated(function (?string $state, Set $set) {
